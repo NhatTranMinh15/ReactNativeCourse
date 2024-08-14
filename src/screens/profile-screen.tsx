@@ -2,11 +2,9 @@ import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, Vi
 import { useAuth } from "../contexts/auth-context";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
-import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { getUserUrl, updateUser, UserFetcher } from "../services/user-service";
-import { UserModel, UserUpdateModel } from "../models/user";
-import useSWRImmutable from "swr/immutable";
+import {  UserUpdateModel } from "../models/user";
 import { useFormik } from "formik";
 
 interface ProfileScreenProps {
@@ -33,7 +31,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                 lastName: values.lastName
             };
             await updateUser(data)
-                .then((response) => {
+                .then((_response) => {
                     Alert.alert("Update User Success")
                     mutate()
                 })
@@ -119,7 +117,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                                         onChangeText={handleChange('age')}
                                     />
                                     <TouchableOpacity style={styles.info_button} onPress={() => handleSubmit()}>
-                                        <Text style={styles.buttonText}>Submit</Text>
+                                        <Text style={styles.buttonText}>Change</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.red_button} onPress={() => logout()}>
                                         <Text style={styles.buttonText}>Logout</Text>
