@@ -1,7 +1,7 @@
 import axios from "axios";
-import { ProductModel } from "../models/product";
-import { getValueFor } from "./api-service";
-import { localhost } from "./user-service";
+import { ProductModel } from "../models/ProductModel";
+import { getValueFor } from "./ApiService";
+import { localhost } from "./UserService";
 async function fetcher(url: string) {
     const token = await getValueFor("token");
     const response = await axios.get(url, {

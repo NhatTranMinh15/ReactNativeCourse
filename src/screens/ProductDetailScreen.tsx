@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import React from 'react';
 import useSWR from "swr";
 import Button from "../components/Button";
-import { getProductDetailUrl, ProductDetailFetcher } from "../services/product-service";
+import { getProductDetailUrl, ProductDetailFetcher } from "../services/ProductService";
 import { RootStackParamList } from "../../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";

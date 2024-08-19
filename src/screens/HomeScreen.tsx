@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
 import useSWR from 'swr';
-import { getProductUrl, ProductFetcher } from '../services/product-service';
+import { getProductUrl, ProductFetcher } from '../services/ProductService';
 import ListItem from '../components/ListItem';
 import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';

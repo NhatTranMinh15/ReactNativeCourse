@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { fetchApiData, selectApiData, selectApiLoading, selectApiError } from '../slices/api-slice';
-import { useAppDispatch, useAppSelector } from '../stores/store';
+import { fetchApiData, selectApiData, selectApiLoading, selectApiError } from '../slices/ApiSlice';
+import { useAppDispatch, useAppSelector } from '../stores/Store';
 
 const useApiData = () => {
     const dispatch = useAppDispatch()

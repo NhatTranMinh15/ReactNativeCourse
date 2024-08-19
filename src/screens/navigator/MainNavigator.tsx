@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen } from '../home-screen';
-import { ProfileScreen } from '../profile-screen';
+import { HomeScreen } from '../HomeScreen';
+import { ProfileScreen } from '../ProfileScreen';
 import { Image, StyleSheet } from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
-import { AdminScreen } from '../admin-screen';
-import SignInScreen from '../signin-screen';
+import { AdminScreen } from '../AdminScreen';
+import SignInScreen from '../SignInScreen';
 
 const Tab = createBottomTabNavigator();
 

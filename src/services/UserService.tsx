@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getValueFor } from "./api-service";
+import { getValueFor } from "./ApiService";
 import * as SQLite from 'expo-sqlite';
-import { LoginResponseUserModel } from "../models/auth";
+import { LoginResponseUserModel } from "../models/AuthModel";
 import { ToastAndroid } from "react-native";
-import { UserUpdateModel } from "../models/user";
+import { UserUpdateModel } from "../models/UserModel";
 
 export const localhost = "http://10.0.2.2:3000"
 export const getUserUrl = () => localhost + "/user/";

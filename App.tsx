@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthProvider } from './src/contexts/AuthContext';
-import MainNavigator from './src/screens/navigator/main-navigator';
+import MainNavigator from './src/screens/navigator/MainNavigator';
 import { Provider } from 'react-redux';
-import store from './src/stores/store';
-import ProductDetailScreen from './src/screens/product-detail-screen';
+import store from './src/stores/Store';
+import ProductDetailScreen from './src/screens/ProductDetailScreen';
 import React from 'react';
 
 export type RootStackParamList = {

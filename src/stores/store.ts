@@ -1,6 +1,6 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit';
 import rootReducer
-, { RootState } from '../reducers/root-reducer';
+, { RootState } from '../reducers/RootReducer';
 import logger from 'redux-logger';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 

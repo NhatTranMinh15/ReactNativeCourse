@@ -1,10 +1,10 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
-import { User } from '../models/user';
-import { loginService } from '../services/auth-service';
-import { LogInModel, LoginResponseModel, LoginResponseUserModel } from '../models/auth';
+import { User } from '../models/UserModel';
+import { loginService } from '../services/AuthService';
+import { LogInModel, LoginResponseModel, LoginResponseUserModel } from '../models/AuthModel';
 import * as SecureStore from 'expo-secure-store';
-import { removeValueOf } from '../services/api-service';
-import { saveUserProfile } from '../services/user-service';
+import { removeValueOf } from '../services/ApiService';
+import { saveUserProfile } from '../services/UserService';
 
 
 interface AuthContextProps {
