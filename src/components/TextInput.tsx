@@ -8,6 +8,7 @@ type ITexInputStyles = {
     error: TextStyle;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function TextInput({ errorText, description, ...props }: any) {
     return (
         <View style={styles.container}>

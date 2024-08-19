@@ -10,6 +10,7 @@ interface ListItemProps {
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const placeholderImage = require('../assets/images/logo.png'); // Replace with your placeholder image
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Button({ style, ...props }: any) {
     return (
         <TouchableOpacity
