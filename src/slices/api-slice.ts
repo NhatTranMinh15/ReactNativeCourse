@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../thunks/app-thunk';
 import { apiService } from '../services/api-service';
 
@@ -6,9 +6,9 @@ interface Photo {
     albumId: number;
     id: number;
     title: string;
-    url: string; 
+    url: string;
     thumbnailUrl: string;
-  }
+}
 
 interface ApiState {
     data: Photo[];
@@ -21,7 +21,7 @@ const initialState: ApiState = {
     loading: false,
     error: null,
 };
-  
+
 export const apiSlice = createSlice({
     name: 'api',
     initialState,
@@ -30,7 +30,7 @@ export const apiSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        fetchDataSuccess: (state, action: PayloadAction<any[]>) => {
+        fetchDataSuccess: (state, action: PayloadAction<[]>) => {
             state.loading = false;
             state.data = action.payload;
         },
@@ -49,7 +49,7 @@ export const fetchApiData = (): AppThunk => async (dispatch) => {
         const response = await apiService.fetchData();
         dispatch(fetchDataSuccess(response.data));
     } catch (error) {
-        let errorMessage = error ? String(error) : 'Unknown error'
+        const errorMessage = error ? String(error) : 'Unknown error'
         dispatch(fetchDataFailure(errorMessage));
     }
 };

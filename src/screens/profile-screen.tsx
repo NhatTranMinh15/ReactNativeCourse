@@ -1,14 +1,19 @@
-import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useAuth } from "../contexts/auth-context";
+import React from "react";
+import { ActivityIndicator, Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import useSWR from "swr";
 import { getUserUrl, updateUser, UserFetcher } from "../services/user-service";
-import {  UserUpdateModel } from "../models/user";
+import { UserUpdateModel } from "../models/user";
 import { useFormik } from "formik";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
 
 interface ProfileScreenProps {
-    navigation: any;
+    navigation: ProfileScreenNavigationProp;
 }
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
@@ -31,11 +36,11 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                 lastName: values.lastName
             };
             await updateUser(data)
-                .then((_response) => {
+                .then(() => {
                     Alert.alert("Update User Success")
                     mutate()
                 })
-                .catch((error: any) => {
+                .catch((error: unknown) => {
                     console.log(error);
                     Alert.alert("Failed to Update User")
                 });
@@ -67,73 +72,76 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     Your Profile
                 </Text>
             </View>
-            {isLoading ?
+            {isLoading ? (
+
                 <ActivityIndicator size="large" color="#0000ff" />
-                :
-                <>
-                    {user && userData ? (
-                        <>
-                            <View style={styles.container}>
-                                <View style={styles.form}>
-                                    <Text style={{ fontSize: 20 }}>
-                                        Your Role Is: {userData.role.toUpperCase()}
-                                    </Text>
-                                    <Text style={styles.label}>Username</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter Username"
-                                        editable={false}
-                                        selectTextOnFocus={false}
-                                        value={userData.username}
-                                    />
-                                    <Text style={styles.label}>Email</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter Email"
-                                        value={userData.email}
-                                        editable={false}
-                                        selectTextOnFocus={false}
-                                    />
-                                    <Text style={styles.label}>First Name</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter First Name"
-                                        value={values.firstName}
-                                        onChangeText={handleChange('firstName')}
-                                    />
-                                    <Text style={styles.label}>Last Name</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter last Name"
-                                        value={values.lastName}
-                                        onChangeText={handleChange('lastName')}
-                                    />
-                                    <Text style={styles.label}>Age</Text>
-                                    <TextInput
-                                        type={"number"}
-                                        style={styles.input}
-                                        placeholder="Age"
-                                        value={values.age.toString()}
-                                        onChangeText={handleChange('age')}
-                                    />
-                                    <TouchableOpacity style={styles.info_button} onPress={() => handleSubmit()}>
-                                        <Text style={styles.buttonText}>Change</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.red_button} onPress={() => logout()}>
-                                        <Text style={styles.buttonText}>Logout</Text>
-                                    </TouchableOpacity>
+            )
+                : (
+                    <>
+                        {user && userData ? (
+                            <>
+                                <View style={styles.container}>
+                                    <View style={styles.form}>
+                                        <Text style={{ fontSize: 20 }}>
+                                            Your Role Is: {userData.role.toUpperCase()}
+                                        </Text>
+                                        <Text style={styles.label}>Username</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter Username"
+                                            editable={false}
+                                            selectTextOnFocus={false}
+                                            value={userData.username}
+                                        />
+                                        <Text style={styles.label}>Email</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter Email"
+                                            value={userData.email}
+                                            editable={false}
+                                            selectTextOnFocus={false}
+                                        />
+                                        <Text style={styles.label}>First Name</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter First Name"
+                                            value={values.firstName}
+                                            onChangeText={handleChange('firstName')}
+                                        />
+                                        <Text style={styles.label}>Last Name</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter last Name"
+                                            value={values.lastName}
+                                            onChangeText={handleChange('lastName')}
+                                        />
+                                        <Text style={styles.label}>Age</Text>
+                                        <TextInput
+                                            type={"number"}
+                                            style={styles.input}
+                                            placeholder="Age"
+                                            value={values.age.toString()}
+                                            onChangeText={handleChange('age')}
+                                        />
+                                        <TouchableOpacity style={styles.info_button} onPress={() => handleSubmit()}>
+                                            <Text style={styles.buttonText}>Change</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.red_button} onPress={() => logout()}>
+                                            <Text style={styles.buttonText}>Logout</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
-                            </View>
-                        </>
-                    ) : (
-                        <>
-                            <Text style={{ flex: 1 }}>Welcome Guest</Text>
-                            <Button title="Login" onPress={() => navigation.navigate("Sign In")}>
-                                <Text>Log in</Text>
-                            </Button>
-                        </>
-                    )}
-                </>
+                            </>
+                        ) : (
+                            <>
+                                <Text style={{ flex: 1 }}>Welcome Guest</Text>
+                                <Button title="Login" onPress={() => navigation.navigate("Sign In")}>
+                                    <Text>Log in</Text>
+                                </Button>
+                            </>
+                        )}
+                    </>
+                )
             }
         </View>
     );
@@ -182,4 +190,5 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
 });
+
 export { ProfileScreen };

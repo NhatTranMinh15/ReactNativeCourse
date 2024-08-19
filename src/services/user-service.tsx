@@ -3,6 +3,7 @@ import { getValueFor } from "./api-service";
 import * as SQLite from 'expo-sqlite';
 import { LoginResponseUserModel } from "../models/auth";
 import { ToastAndroid } from "react-native";
+import { UserUpdateModel } from "../models/user";
 
 export const localhost = "http://10.0.2.2:3000"
 export const getUserUrl = () => localhost + "/user/";
@@ -10,19 +11,17 @@ export const getAllUserUrl = () => localhost + "/user/all";
 
 export const UserFetcher = async (url: string) => {
     const token = await getValueFor("token");
-
     const response = await axios.get(url, {
         headers: {
             Authorization: "Bearer " + token
         }
     });
     const user = await response.data.data;
-
     return user;
 }
-export const updateUser = async (body: any) => {
-    const token = await getValueFor("token");
 
+export const updateUser = async (body: UserUpdateModel) => {
+    const token = await getValueFor("token");
     await axios.patch(localhost + "/user/", body, {
         headers: {
             Authorization: "Bearer " + token

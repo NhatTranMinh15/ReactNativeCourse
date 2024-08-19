@@ -12,7 +12,7 @@ async function fetcher(url: string) {
     return response.data;
 }
 export const getProductUrl = () => localhost + "/product/";
-export const getProductDetailUrl = (productId: string|number) => localhost + "/product/" + productId;
+export const getProductDetailUrl = (productId: string | number) => localhost + "/product/" + productId;
 
 export const ProductFetcher = async (url: string) => {
     const response = await fetcher(url);

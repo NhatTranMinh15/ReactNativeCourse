@@ -31,7 +31,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             const data: LoginResponseModel = response.data;
             const token: string = data.data.token;
             const user: LoginResponseUserModel = data.data.user;
-            // this will be secure save
             await save("token", token);
             await saveUserProfile(user);
             setUser({ username: user.username, role: user.role });

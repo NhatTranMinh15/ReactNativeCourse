@@ -5,11 +5,11 @@ export const apiService = {
     fetchData: () => axios.get('https://jsonplaceholder.typicode.com/photos'),
 };
 
-export async function getValueFor(key: any) {
-    let result = await SecureStore.getItemAsync(key);        
+export async function getValueFor(key: string) {
+    const result = await SecureStore.getItemAsync(key);        
     return result;
 }
-export async function removeValueOf(key: any) {
-    let result = await SecureStore.deleteItemAsync(key);        
+export async function removeValueOf(key: string) {
+    const result = await SecureStore.deleteItemAsync(key);        
     return result;
 }

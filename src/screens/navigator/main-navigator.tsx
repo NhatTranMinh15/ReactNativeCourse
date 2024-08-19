@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '../home-screen';
 import { ProfileScreen } from '../profile-screen';
 import { Image, StyleSheet } from 'react-native';
-import { useAuth } from '../../contexts/auth-context';
+import { useAuth } from '../../contexts/AuthContext';
 import { AdminScreen } from '../admin-screen';
 import SignInScreen from '../signin-screen';
 
